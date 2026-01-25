@@ -588,66 +588,6 @@
             margin-right: 10px;
         }
         
-        /* Estilos para o placar fixo */
-        .fixed-score-display {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            display: flex;
-            gap: 15px;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 3px solid #FFD166;
-        }
-        
-        .fixed-score-item {
-            text-align: center;
-            padding: 10px 15px;
-            border-radius: 10px;
-            min-width: 120px;
-        }
-        
-        .fixed-score-red {
-            background-color: #FFEBEE;
-            border: 3px solid #EF5350;
-        }
-        
-        .fixed-score-green {
-            background-color: #E8F5E9;
-            border: 3px solid #4CAF50;
-        }
-        
-        .fixed-score-label {
-            font-size: 1rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .fixed-score-value {
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        
-        /* Estilos para o placar dentro das telas */
-        .inline-score-display {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .inline-score-item {
-            text-align: center;
-            padding: 15px;
-            border-radius: 15px;
-            min-width: 140px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-        
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -688,32 +628,10 @@
             .challenge-btn {
                 min-width: 150px;
             }
-            
-            .fixed-score-display {
-                position: relative;
-                top: 0;
-                right: 0;
-                margin: 10px auto;
-                width: 90%;
-                justify-content: center;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Placar fixo que aparece em todas as telas -->
-    <div id="fixed-score-display" class="fixed-score-display" style="display: none;">
-        <div class="fixed-score-item fixed-score-red">
-            <div class="fixed-score-label" style="color: #EF5350;">Equipe Vermelha</div>
-            <div id="fixed-score-red" class="fixed-score-value" style="color: #EF5350;">0</div>
-        </div>
-        
-        <div class="fixed-score-item fixed-score-green">
-            <div class="fixed-score-label" style="color: #4CAF50;">Equipe Verde</div>
-            <div id="fixed-score-green" class="fixed-score-value" style="color: #4CAF50;">0</div>
-        </div>
-    </div>
-
     <div class="container">
         <h1><i class="fas fa-gamepad"></i> Jogo de Perguntas</h1>
         <h2>Tecnologia & Ginastica</h2>
@@ -790,21 +708,6 @@
                 <div id="progress-fill" class="progress-fill"></div>
             </div>
             
-            <!-- Placar atualizado na tela de pergunta -->
-            <div class="inline-score-display">
-                <div class="inline-score-item score-red">
-                    <div class="team-label" style="color: #EF5350; font-size: 1.5rem;">Equipe Vermelha</div>
-                    <div id="question-score-red" class="score-value" style="color: #EF5350; font-size: 2.5rem;">0</div>
-                    <div>pontos</div>
-                </div>
-                
-                <div class="inline-score-item score-green">
-                    <div class="team-label" style="color: #4CAF50; font-size: 1.5rem;">Equipe Verde</div>
-                    <div id="question-score-green" class="score-value" style="color: #4CAF50; font-size: 2.5rem;">0</div>
-                    <div>pontos</div>
-                </div>
-            </div>
-            
             <div id="current-player" class="current-player">
                 <!-- Jogador atual será inserido aqui -->
             </div>
@@ -828,21 +731,6 @@
         <div id="screen-answer" class="screen">
             <div class="progress-text">
                 Resposta - Turno <span id="answer-turn">1</span>
-            </div>
-            
-            <!-- Placar atualizado na tela de resposta -->
-            <div class="inline-score-display">
-                <div class="inline-score-item score-red">
-                    <div class="team-label" style="color: #EF5350; font-size: 1.5rem;">Equipe Vermelha</div>
-                    <div id="answer-score-red" class="score-value" style="color: #EF5350; font-size: 2.5rem;">0</div>
-                    <div>pontos</div>
-                </div>
-                
-                <div class="inline-score-item score-green">
-                    <div class="team-label" style="color: #4CAF50; font-size: 1.5rem;">Equipe Verde</div>
-                    <div id="answer-score-green" class="score-value" style="color: #4CAF50; font-size: 2.5rem;">0</div>
-                    <div>pontos</div>
-                </div>
             </div>
             
             <div id="answer-player" class="current-player">
@@ -880,7 +768,7 @@
             
             <div class="challenge-container">
                 <div id="challenge-text" class="challenge-text">
-                    <!-- O desafio será inserida aqui -->
+                    <!-- O desafio será inserido aqui -->
                 </div>
                 
                 <div class="challenge-controls">
@@ -1421,29 +1309,6 @@
             body.classList.remove('team-red-bg', 'team-green-bg');
         }
 
-        // Função para atualizar TODOS os displays de pontuação
-        function updateAllScoreDisplays() {
-            // Placar fixo
-            document.getElementById('fixed-score-red').textContent = gameState.redScore;
-            document.getElementById('fixed-score-green').textContent = gameState.greenScore;
-            
-            // Tela de pergunta
-            document.getElementById('question-score-red').textContent = gameState.redScore;
-            document.getElementById('question-score-green').textContent = gameState.greenScore;
-            
-            // Tela de resposta
-            document.getElementById('answer-score-red').textContent = gameState.redScore;
-            document.getElementById('answer-score-green').textContent = gameState.greenScore;
-            
-            // Tela de desafio
-            document.getElementById('score-red').textContent = gameState.redScore;
-            document.getElementById('score-green').textContent = gameState.greenScore;
-            
-            // Tela final (será atualizada separadamente)
-            document.getElementById('final-score-red').textContent = gameState.redScore;
-            document.getElementById('final-score-green').textContent = gameState.greenScore;
-        }
-
         // Iniciar jogo
         document.getElementById('start-btn').addEventListener('click', startGame);
         document.getElementById('restart-btn').addEventListener('click', restartGame);
@@ -1465,11 +1330,9 @@
             // Aplicar tema da equipe
             applyTeamTheme();
             
-            // Mostrar placar fixo
-            document.getElementById('fixed-score-display').style.display = 'flex';
-            
-            // Atualizar todos os displays de pontuação
-            updateAllScoreDisplays();
+            // Atualizar displays de pontuação
+            document.getElementById('score-red').textContent = '0';
+            document.getElementById('score-green').textContent = '0';
             
             // Ir para a primeira pergunta
             showNextQuestion();
@@ -1480,9 +1343,6 @@
             document.getElementById('current-turn').textContent = gameState.currentTurn;
             document.getElementById('total-turns').textContent = gameState.totalTurns;
             document.getElementById('progress-fill').style.width = `${(gameState.currentTurn / gameState.totalTurns) * 100}%`;
-            
-            // Atualizar placar
-            updateAllScoreDisplays();
             
             // Selecionar pergunta aleatória não utilizada
             let questionIndex;
@@ -1538,6 +1398,9 @@
                     gameState.playerAnswer = index;
                     gameState.playerAnswerCorrect = option.correct;
                     
+                    // Mostrar botão para continuar
+                    document.getElementById('next-after-question').style.display = 'block';
+                    
                     // Adicionar pontos se acertou
                     if (option.correct) {
                         if (gameState.currentTeam === 'red') {
@@ -1545,12 +1408,7 @@
                         } else {
                             gameState.greenScore += 10;
                         }
-                        // Atualizar placar imediatamente
-                        updateAllScoreDisplays();
                     }
-                    
-                    // Mostrar botão para continuar
-                    document.getElementById('next-after-question').style.display = 'block';
                 });
                 
                 optionsContainer.appendChild(optionElement);
@@ -1569,9 +1427,6 @@
         function showAnswerScreen() {
             // Atualizar número do turno
             document.getElementById('answer-turn').textContent = gameState.currentTurn;
-            
-            // Atualizar placar
-            updateAllScoreDisplays();
             
             // Atualizar jogador atual
             let teamName, teamColor, currentPlayer;
@@ -1635,9 +1490,6 @@
             // Atualizar número do turno
             document.getElementById('challenge-turn').textContent = gameState.currentTurn;
             
-            // Atualizar placar
-            updateAllScoreDisplays();
-            
             // Atualizar jogador atual
             let teamName, teamColor, currentPlayer;
             
@@ -1658,6 +1510,10 @@
             // Mostrar desafio atual (usando índice circular para repetir desafios se necessário)
             const challengeIndex = gameState.currentChallengeIndex % challenges.length;
             document.getElementById('challenge-text').textContent = challenges[challengeIndex];
+            
+            // Atualizar pontuação atual
+            document.getElementById('score-red').textContent = gameState.redScore;
+            document.getElementById('score-green').textContent = gameState.greenScore;
             
             // Configurar botões do desafio
             document.getElementById('challenge-success').onclick = () => handleChallengeResult(true);
@@ -1682,9 +1538,6 @@
                     gameState.greenScore -= 10;
                 }
             }
-            
-            // Atualizar placar imediatamente
-            updateAllScoreDisplays();
             
             // Atualizar índice do próximo desafio
             gameState.currentChallengeIndex++;
@@ -1733,9 +1586,6 @@
         function showFinalScreen() {
             // Remover tema da equipe
             removeTeamTheme();
-            
-            // Esconder placar fixo
-            document.getElementById('fixed-score-display').style.display = 'none';
             
             // Atualizar pontuação final
             document.getElementById('final-score-red').textContent = gameState.redScore;
@@ -1787,14 +1637,8 @@
             // Remover tema da equipe
             removeTeamTheme();
             
-            // Esconder placar fixo
-            document.getElementById('fixed-score-display').style.display = 'none';
-            
             // Atualizar contadores
             updatePlayerCounts();
-            
-            // Atualizar displays de pontuação
-            updateAllScoreDisplays();
             
             // Mostrar tela inicial
             showScreen('home');
